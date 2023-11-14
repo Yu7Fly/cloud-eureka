@@ -24,13 +24,17 @@ public class OrderApplication {
      * 创建RestTemplate并注入Spring容器
      */
     @Bean
-    @LoadBalanced
+    @LoadBalanced //只是开启负载均衡的标志
     public RestTemplate restTemplate() {
         return new RestTemplate();
     }
 
-   /*@Bean
-    public IRule randomRule() {
-        return new RandomRule();
-    }*/
+//    /**
+//     * 负载均衡
+//     * @return
+//     */
+//    @Bean
+//    public IRule randomRule() {
+//        return new RandomRule();
+//    }
 }

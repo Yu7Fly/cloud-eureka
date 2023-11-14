@@ -43,5 +43,7 @@ mybatis:
   type-aliases-package: com.yu7.user.pojo #该包下别名注册到mybatis
   configuration:
     map-underscore-to-camel-case: true #下划线转驼峰映射
-
+logging:
+  level:
+    com.yu7: debug
 
