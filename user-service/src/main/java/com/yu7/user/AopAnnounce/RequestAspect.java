@@ -10,6 +10,9 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 
+/**
+ * aop前置，打印被调用方负载均衡到的实例信息
+ */
 @Aspect
 @Component
 @Slf4j
