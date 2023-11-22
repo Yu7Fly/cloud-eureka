@@ -12,6 +12,7 @@
         <module>eureka-server</module>
         <module>payment-service</module>
         <module>user-service</module>
+        <module>common</module>
     </modules>
 
     <parent>
@@ -30,6 +31,10 @@
         <mysql.version>5.1.47</mysql.version>
         <mybatis.version>2.1.1</mybatis.version>
         <slf4j-api.version>1.7.32</slf4j-api.version>
+        <okhttp.version>4.9.0</okhttp.version>
+        <lombok.version>1.18.10</lombok.version>
+        <spring-boot-starter-actuator.version>2.3.9.RELEASE</spring-boot-starter-actuator.version>
+        <spring-boot-starter-aop.version>2.5.10</spring-boot-starter-aop.version>
     </properties>
 
     <dependencyManagement>
@@ -69,25 +74,35 @@
                 <version>${slf4j-api.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.squareup.okhttp3</groupId>
+                <artifactId>okhttp</artifactId>
+                <version>${okhttp.version}</version>
+            </dependency>
+
 <!--            <dependency>这个依赖加上之后会报错，项目起不来-->
 <!--                <groupId>org.springframework</groupId>-->
 <!--                <artifactId>spring-aop</artifactId>-->
 <!--                <version>${spring-aop.version}</version>-->
 <!--            </dependency>-->
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-aop</artifactId>
+                <version>${spring-boot-starter-aop.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>ry.org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-actuator</artifactId>
+                <version>${spring-boot-starter-actuator.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
-    <dependencies>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-aop</artifactId>
-        </dependency>
-
-
-    </dependencies>
-
 </project>

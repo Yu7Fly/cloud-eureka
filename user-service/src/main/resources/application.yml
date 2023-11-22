@@ -27,7 +27,7 @@ spring:
   datasource:
     url: jdbc:mysql://152.136.56.27:3306/cloud_user?useSSL=false
     username: root
-    password: 123456
+    password: ysbb284650
     driver-class-name: com.mysql.jdbc.Driver
   application:
     name: user-service # 服务名称
@@ -35,10 +35,10 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://127.0.0.1:10086/eureka #Eureka服务器URL
-      logging:
-        level:
-          yu7: debug
+      defaultZone: http://127.0.0.1:10086/eureka
+    registry-fetch-interval-seconds: 180
+  #    fetch-registry: false  #是否从Eureka服务器获取注册表信息
+ #  修改心跳时间
 mybatis:
   type-aliases-package: com.yu7.user.pojo #该包下别名注册到mybatis
   configuration:
@@ -46,4 +46,8 @@ mybatis:
 logging:
   level:
     com.yu7: debug
+# Actuator
+management:
+  server:
+    port: 7777
 

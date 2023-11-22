@@ -1,6 +1,7 @@
 package com.yu7.order;
 
 
+import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,9 +15,11 @@ import org.springframework.web.client.RestTemplate;
 //当feignClient所在的包不在该项目启动类的扫描范围内，就可以通过指定@EnableFeignClients注解的clients属性来确定其想要的client
 //@EnableFeignClients(clients = {UserClient.class},defaultConfiguration = DefaultFeignConfiguration.class) //开启feign的客户端
 @EnableFeignClients
+@Slf4j
 public class OrderApplication {
 
     public static void main(String[] args) {
+
         SpringApplication.run(OrderApplication.class, args);
     }
 
@@ -29,10 +32,10 @@ public class OrderApplication {
         return new RestTemplate();
     }
 
-//    /**
-//     * 负载均衡
-//     * @return
-//     */
+    /**
+     * 负载均衡
+     * @return
+     */
 //    @Bean
 //    public IRule randomRule() {
 //        return new RandomRule();

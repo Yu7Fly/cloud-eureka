@@ -5,5 +5,18 @@ spring:
     name: eurekaserver # eureka的服务名称
 eureka:
   client:
-    service-url:  # eureka的地址信息
+    service-url:
       defaultZone: http://127.0.0.1:10086/eureka
+    fetch-registry: true
+#关闭Eureka的自我保护
+  server:
+    enable-self-preservation: true
+  # 修改心跳时间
+#  server:
+#    eviction-interval-timer-in-ms: 10000
+# 日志级别
+logging:
+  level:
+    com.yu7: debug
+eureka-server:
+          name: 127.0.0.1:10086
