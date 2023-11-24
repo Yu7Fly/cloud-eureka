@@ -33,8 +33,9 @@
         <slf4j-api.version>1.7.32</slf4j-api.version>
         <okhttp.version>4.9.0</okhttp.version>
         <lombok.version>1.18.10</lombok.version>
-        <spring-boot-starter-actuator.version>2.3.9.RELEASE</spring-boot-starter-actuator.version>
+        <spring-boot-starter-actuator.version>2.5.9</spring-boot-starter-actuator.version>
         <spring-boot-starter-aop.version>2.5.10</spring-boot-starter-aop.version>
+        <commons-lang3>3.11</commons-lang3>
     </properties>
 
     <dependencyManagement>
@@ -99,9 +100,15 @@
             </dependency>
 
             <dependency>
-                <groupId>ry.org.springframework.boot</groupId>
+                <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-actuator</artifactId>
                 <version>${spring-boot-starter-actuator.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
