@@ -74,7 +74,7 @@ public class controller {
     public void offLine() {
         DiscoveryClient client = DiscoveryManager.getInstance().getDiscoveryClient();
         client.shutdown();
-        log.debug("可用服务列表："+clientFactory.getLoadBalancer("user-service").getReachableServers().toString());
+        log.debug("可用服务列表：" + clientFactory.getLoadBalancer("user-service").getReachableServers().toString());
     }
 
     @GetMapping(value = "/service-down-list")
@@ -86,13 +86,12 @@ public class controller {
 
         //去服务列表里挨个下线
         OkHttpClient client = new OkHttpClient();
-        portParams.forEach(temp -> {
+        log.error("开始时间：{}", System.currentTimeMillis());
+        portParams.parallelStream().forEach(temp -> {
             if (servicePorts.contains(temp)) {
-                Request request = new Request.Builder()
-                        .url("http://" + ipAddress + ":" + temp + "/control/service-down")
-                        .build();
+                String url = "http://" + ipAddress + ":" + temp + "/control/service-down";
                 try {
-                    Response response = client.newCall(request).execute();
+                    Response response = client.newCall(new Request.Builder().url(url).build()).execute();
                     if (response.code() == 200) {
                         log.debug(temp + "服务下线成功");
                         successList.add(temp);
@@ -105,10 +104,11 @@ public class controller {
             }
         });
         //循环执行完去清除Ribbon缓存
-        log.debug("可用服务列表："+clientFactory.getLoadBalancer("user-service").getReachableServers().toString());
-        log.debug("可用服务列表："+clientFactory.getLoadBalancer("user-service").getServerList(true).toString());
-        log.debug("开始清除Ribbon缓存");
-        clearRibbonCache.clearRibbonCache(clientFactory);
+//        log.debug("可用服务列表：" + clientFactory.getLoadBalancer("user-service").getReachableServers().toString());
+//        log.debug("可用服务列表：" + clientFactory.getLoadBalancer("user-service").getServerList(true).toString());
+//        log.debug("开始清除Ribbon缓存");
+        clearRibbonCache.clearRibbonCache(clientFactory,portParams);
+        log.error("结束时间：{}", System.currentTimeMillis());
         return successList + "优雅下线成功";
     }
 
@@ -144,10 +144,10 @@ public class controller {
                 log.error(e.toString());
             }
         });
-        log.debug("可用服务列表："+clientFactory.getLoadBalancer("user-service").getReachableServers().toString());
-        log.debug("可用服务列表："+clientFactory.getLoadBalancer("user-service").getServerList(true).toString());
+        log.debug("可用服务列表：" + clientFactory.getLoadBalancer("user-service").getReachableServers().toString());
+        log.debug("可用服务列表：" + clientFactory.getLoadBalancer("user-service").getServerList(true).toString());
         log.debug("开始清除Ribbon缓存");
-        clearRibbonCache.clearRibbonCache(clientFactory);
+        clearRibbonCache.clearRibbonCache(clientFactory,portParams);
         return successList + "优雅下线成功";
     }
 

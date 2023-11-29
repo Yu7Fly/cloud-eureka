@@ -61,6 +61,7 @@ public class controller {
         if (ObjectUtils.isEmpty(portParams)){
           return "端口为空"; //todo 完善自定义异常
         }
+        log.error("开始时间：{}",System.currentTimeMillis());
         portParams.forEach(temp->{
             //处理服务信息
             String serviceInfo = sourceMap.get(temp);
@@ -82,6 +83,7 @@ public class controller {
                 log.error(e.toString());
             }
         });
+        log.error("结束时间：{}",System.currentTimeMillis());
         return "goodbye service"+successList;
     }
 }

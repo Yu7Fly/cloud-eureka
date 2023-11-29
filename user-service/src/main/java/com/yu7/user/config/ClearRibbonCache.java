@@ -15,12 +15,18 @@ import java.util.List;
 public class ClearRibbonCache {
 
 
-    public void clearRibbonCache(SpringClientFactory clientFactory) {
+    public void clearRibbonCache(SpringClientFactory clientFactory,List<Integer> portParams) {
         // 获取指定服务的负载均衡器
         ILoadBalancer loadBalancer = clientFactory.getLoadBalancer("user-service");
         //在主动拉取可用列表，而不是走拦截器被动的方式——这里
         List<Server> reachableServers = loadBalancer.getReachableServers();//这里从客户端获取，会等待客户端同步三级缓存
+        //过滤掉已经下线的端口
+        reachableServers.forEach(temp->{
+            if (portParams.contains(temp.getPort())){
 
+            }
+        });
+//        reachableServers.stream().filter(temp->)
         // 在某个时机需要清除Ribbon缓存
         ((BaseLoadBalancer) loadBalancer).setServersList(reachableServers); // 清除Ribbon负载均衡器的缓存
     }
