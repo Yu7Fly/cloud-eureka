@@ -4,7 +4,7 @@ import com.netflix.appinfo.InstanceInfo;
 import com.netflix.discovery.DiscoveryClient;
 import com.netflix.discovery.DiscoveryManager;
 import com.netflix.discovery.EurekaClient;
-import com.yu7.user.config.ClearRibbonCache;
+
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -36,8 +36,8 @@ public class controller {
     @Value("${eureka-server.appName}")
     private String appName;
 
-    @Resource
-    ClearRibbonCache clearRibbonCache;
+//    @Resource
+//    ClearRibbonCache clearRibbonCache;
 
     @Resource
     EurekaClient eurekaClient;
@@ -74,7 +74,7 @@ public class controller {
     public void offLine() {
         DiscoveryClient client = DiscoveryManager.getInstance().getDiscoveryClient();
         client.shutdown();
-        log.debug("可用服务列表：" + clientFactory.getLoadBalancer("user-service").getReachableServers().toString());
+//        log.debug("可用服务列表：" + clientFactory.getLoadBalancer("user-service").getReachableServers().toString());
     }
 
     @GetMapping(value = "/service-down-list")
@@ -107,8 +107,10 @@ public class controller {
 //        log.debug("可用服务列表：" + clientFactory.getLoadBalancer("user-service").getReachableServers().toString());
 //        log.debug("可用服务列表：" + clientFactory.getLoadBalancer("user-service").getServerList(true).toString());
 //        log.debug("开始清除Ribbon缓存");
-        clearRibbonCache.clearRibbonCache(clientFactory,portParams);
-        log.error("结束时间：{}", System.currentTimeMillis());
+//        clearRibbonCache.clearRibbonCache(clientFactory,portParams);
+//        log.debug("可用服务列表：{}",clientFactory.getLoadBalancer("user-service").getAllServers());
+//        log.debug("可用服务列表：{}",clientFactory.getLoadBalancer("user-service").getReachableServers());
+        // todo MQ通知
         return successList + "优雅下线成功";
     }
 
@@ -144,10 +146,10 @@ public class controller {
                 log.error(e.toString());
             }
         });
-        log.debug("可用服务列表：" + clientFactory.getLoadBalancer("user-service").getReachableServers().toString());
-        log.debug("可用服务列表：" + clientFactory.getLoadBalancer("user-service").getServerList(true).toString());
-        log.debug("开始清除Ribbon缓存");
-        clearRibbonCache.clearRibbonCache(clientFactory,portParams);
+//        log.debug("可用服务列表：" + clientFactory.getLoadBalancer("user-service").getReachableServers().toString());
+//        log.debug("可用服务列表：" + clientFactory.getLoadBalancer("user-service").getServerList(true).toString());
+//        log.debug("开始清除Ribbon缓存");
+//        clearRibbonCache.clearRibbonCache(clientFactory,portParams);
         return successList + "优雅下线成功";
     }
 

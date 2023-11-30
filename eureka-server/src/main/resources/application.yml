@@ -13,6 +13,7 @@ eureka:
     leaseExpirationDurationInSeconds: 90
 #关闭Eureka的自我保护
   server:
+#    eviction-interval-timer-in-ms: 1000
     enable-self-preservation: true
     # 不使用只读缓存
 #    use-read-only-response-cache: false
