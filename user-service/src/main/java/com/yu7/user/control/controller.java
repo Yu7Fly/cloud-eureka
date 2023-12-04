@@ -11,8 +11,11 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import org.apache.commons.lang3.ObjectUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.json.GsonJsonParser;
 import org.springframework.cloud.netflix.ribbon.SpringClientFactory;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,6 +39,9 @@ public class controller {
 
     @Value("${eureka-server.appName}")
     private String appName;
+
+    @Autowired
+    private StringRedisTemplate stringRedisTemplate;
 
 //    @Resource
 //    ClearRibbonCache clearRibbonCache;
@@ -111,6 +118,9 @@ public class controller {
 //        log.debug("可用服务列表：{}",clientFactory.getLoadBalancer("user-service").getAllServers());
 //        log.debug("可用服务列表：{}",clientFactory.getLoadBalancer("user-service").getReachableServers());
         // todo MQ通知
+        HashMap<String, List<Integer>> map = new HashMap<>();
+        map.put("user-service",portParams);
+        stringRedisTemplate.opsForHash().put("port-map","ports",portParams.toString());
         return successList + "优雅下线成功";
     }
 
