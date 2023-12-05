@@ -39,9 +39,9 @@ spring:
     jedis:
       pool:
         max-active: 10
-
+# 服务名称
   application:
-           name: user-service # 服务名称
+           name: user-service
 # Eureka配置
 eureka:
   client:
@@ -72,8 +72,6 @@ management:
 eureka-server:
           ipAddress: 127.0.0.1
           appName: user-service
-
-# Redis配置
 
 
 

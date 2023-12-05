@@ -2,7 +2,7 @@ package com.yu7.order.pojo;
 
 
 
-import com.yu7.model.User;
+import com.yu7.feign.pojo.User;
 import lombok.Data;
 
 @Data

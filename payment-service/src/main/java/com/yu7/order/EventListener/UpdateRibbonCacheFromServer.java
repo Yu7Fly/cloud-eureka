@@ -1,30 +1,33 @@
-//package com.yu7.config;
+//package com.yu7.order.EventListener;
 //
 //import AllUtil.StringUtils.StringChange;
 //import com.netflix.appinfo.InstanceInfo;
+//
+//import com.yu7.order.config.ClearRibbonCacheBean;
 //import lombok.extern.slf4j.Slf4j;
 //import org.springframework.cloud.netflix.eureka.server.event.EurekaInstanceCanceledEvent;
 //import org.springframework.cloud.netflix.eureka.server.event.EurekaInstanceRegisteredEvent;
 //import org.springframework.cloud.netflix.ribbon.SpringClientFactory;
+//import org.springframework.context.annotation.Bean;
 //import org.springframework.context.event.EventListener;
 //import org.springframework.stereotype.Component;
 //
 //import javax.annotation.Resource;
 //
 ///**
-// * Eureka服务上下线监听
+// * 行不通
 // */
-//@Slf4j
 //@Component
-//public class EurekaServiceListener {
-//    /**
-//     * 想要在Eureka-Server中更新缓存好像行不通，还是得去调用方
-//     */
+//@Slf4j
+//public class UpdateRibbonCacheFromServer {
+//
 //    @Resource
-//    ClearRibbonCacheBeanByListen clearRibbonCacheBean;
+//    ClearRibbonCacheBean clearRibbonCacheBean;
 //
 //    @Resource
 //    SpringClientFactory springClientFactory;
+//
+//
 //    @EventListener
 //    public void listen(EurekaInstanceCanceledEvent event){
 //        log.debug(event.getServerId()+"\t"+event.getAppName()+"服务下线");

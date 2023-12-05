@@ -57,7 +57,6 @@ eureka:
       defaultZone: http://127.0.0.1:10086/eureka
       #  Eureka 客户端从 Eureka 服务器获取注册表信息的时间间隔，这里配置为 5 秒
       registryFetchIntervalSeconds: 5
-  server:
   #是否使用只读缓存
 #    use-read-only-response-cache: false
 
@@ -74,7 +73,7 @@ mybatis:
   configuration:
     map-underscore-to-camel-case: true
 
-    #Ribbon同步缓存的时间
+#Ribbon同步缓存的时间
 eureka-server:
             url: http://127.0.0.1:10086/eureka/apps/
             appName: user-service

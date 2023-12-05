@@ -30,4 +30,19 @@ public class StringChange {
         }
         return numbers;
     }
+
+    /**
+     * 把字符串里的数字取出来
+     */
+    public static Integer stringGetNumber(String str){
+        String regex = "\\d+";
+
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(str);
+        int number=0;
+        while (matcher.find()) {
+            number += Integer.parseInt(matcher.group());
+        }
+        return number;
+    }
 }
