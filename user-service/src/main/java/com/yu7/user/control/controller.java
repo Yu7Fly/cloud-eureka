@@ -115,7 +115,7 @@ public class controller {
 //        log.debug("可用服务列表：{}",clientFactory.getLoadBalancer("user-service").getAllServers());
 //        log.debug("可用服务列表：{}",clientFactory.getLoadBalancer("user-service").getReachableServers());
         // todo MQ通知
-        stringRedisTemplate.opsForHash().put("port-map","down-ports",portParams.toString());
+        stringRedisTemplate.opsForHash().put("port-map",appName,portParams.toString());
         return successList + "优雅下线成功";
     }
 
