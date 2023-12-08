@@ -7,7 +7,7 @@
     <option name="SPRING_BOOT_MAIN_CLASS" value="com.yu7.user.UserApplication" />
     <extension name="coverage">
       <pattern>
-        <option name="PATTERN" value="com.yu7.user.*" />
+        <option name="PATTERN" value="com.yu7.user.UserApplication" />
         <option name="ENABLED" value="true" />
       </pattern>
     </extension>
