@@ -23,6 +23,7 @@ import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 @RestController
@@ -115,7 +116,8 @@ public class controller {
 //        log.debug("可用服务列表：{}",clientFactory.getLoadBalancer("user-service").getAllServers());
 //        log.debug("可用服务列表：{}",clientFactory.getLoadBalancer("user-service").getReachableServers());
         // todo MQ通知
-        stringRedisTemplate.opsForHash().put("port-map",appName,portParams.toString());
+        stringRedisTemplate.opsForHash().putIfAbsent("port-map",appName,portParams.toString());
+        stringRedisTemplate.expire("port-map", 30, TimeUnit.SECONDS);
         return successList + "优雅下线成功";
     }
 

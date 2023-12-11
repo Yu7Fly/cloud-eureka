@@ -7,10 +7,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 
 import javax.annotation.Resource;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 
@@ -142,22 +139,32 @@ public class OrderServiceTest {
         stringRedisTemplate.opsForHash().putAll("Yu7-HashMap-All",map);
         //如果变量值存在，在变量中可以添加不存在的的键值对，
         //如果变量不存在，则新增一个变量，同时将键值对添加到该变量添加成功返回true否则返回false
-//        Boolean absent = stringRedisTemplate.opsForHash().putIfAbsent("hash", "hash-key", "value1");
-//        //获取指定变量中的hashMap值
-//        List<Object> values = stringRedisTemplate.opsForHash().values("hash");
-//        //获取变量中的键值对
-//        Map<Object, Object> entries = stringRedisTemplate.opsForHash().entries("hash");
-//        //获取变量中的指定map键是否有值,如果存在该map键则获取值，没有则返回null
-//        Object value = stringRedisTemplate.opsForHash().get("hash", "hash-key");
-//        //获取变量中的键
-//        //Set<Object> keys = stringRedisTemplate.opsForHash().keys("hash");
-//        //获取变量的长度
-//        Long size = stringRedisTemplate.opsForHash().size("hash");
-//        //使变量中的键以long值的大小进行自增长值必须为Integer类型,否则异常
-//        Long increment = stringRedisTemplate.opsForHash().increment("hash", "hash-key2", 1);
-//        //以集合的方式获取变量中的值
-//        List<Object> valuelist= stringRedisTemplate.opsForHash().multiGet("hash", Arrays.asList("hash-key", "hash-key1"));
-//        // 删除变量中的键值对，可以传入多个参数，删除多个键值对返回删除成功数量
-//        Long delete = stringRedisTemplate.opsForHash().delete("hash", "hash-key", "hash-key1");
+        Boolean b = stringRedisTemplate.opsForHash().putIfAbsent("Yu7-HashMap-All", "hash-key1", "value1");
+        System.out.println("向Yu7-HashMap-All中添加之前不存在的键值的结果是："+b);
+        //获取指定变量中的hashMap值  取的是HashMap中的value不是key
+        List<Object> values =stringRedisTemplate.opsForHash().values("Yu7-HashMap-All");
+        System.out.println("获取到的指定变量Yu7-HashMap-AllHashMap的值为："+values);
+        //获取变量中的键值对
+        Map<Object, Object> entries = stringRedisTemplate.opsForHash().entries("Yu7-HashMap-All");
+        //{hash-key2=hash-value2, hash-key3=hash-value3, hash-key1=value1}
+        System.out.println("获取到的指定变量的键值对："+entries);
+        //获取变量中的指定map键是否有值,如果存在该map键则获取值，没有则返回null
+        Object value = stringRedisTemplate.opsForHash().get("Yu7-HashMap-All", "hash-key2");
+        System.out.println("获取指定mapYu7-HashMap-All键hash-key2对应的值："+value);
+        //获取变量中的键
+        Set<Object> keys = stringRedisTemplate.opsForHash().keys("Yu7-HashMap-All");
+        System.out.println("从Yu7-HashMap-All获取的键为："+keys);
+        //获取变量的长度
+        Long size = stringRedisTemplate.opsForHash().size("Yu7-HashMap-All");
+        System.out.println("获取到的长度为："+size);
+        //使变量中的键以long值的大小进行自增长值必须为Integer类型,否则异常: ERR hash value is not an integer
+        Long increment = stringRedisTemplate.opsForHash().increment("Yu7-HashMap-All", "hash-key7", 1);
+        System.out.println("给Yu7-HashMap-All中的hash-key2值进行增长："+increment);
+        //以集合的方式获取变量中的值
+        List<Object> valuelist= stringRedisTemplate.opsForHash().multiGet("Yu7-HashMap-All", Arrays.asList("hash-key1", "hash-key2"));
+        System.out.println("以集合的形式取出变量hash-key1,hash-key2中的值："+valuelist);
+        // 删除变量中的键值对，可以传入多个参数，删除多个键值对返回删除成功数量
+        Long delete = stringRedisTemplate.opsForHash().delete("Yu7-HashMap-All", "hash-key1");
+        System.out.println("删除变量中的键值对成功的个数为："+delete);
     }
 }

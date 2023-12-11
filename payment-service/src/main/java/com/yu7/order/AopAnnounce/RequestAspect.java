@@ -41,7 +41,7 @@ public class RequestAspect {
         log.debug("从Redis获取的端口为：{}", ports);
         //下线了才会有值，没有值说明没下线不用更新
         if (ObjectUtils.isNotEmpty(ports)) {
-            clearRibbonCacheBean.clearRibbonCache(springClientFactory, ports);
+            clearRibbonCacheBean.clearRibbonCache(springClientFactory, ports,firstServiceName);
         }
     }
 }
