@@ -19,14 +19,22 @@ spring:
 # 服务名称
   application:
            name: user-service
+  # rabbitmq
+  rabbitmq:
+    host: 152.136.56.27
+    port: 5672
+    username: yu7
+    password: 284650
+    virtual-host: /
 # Eureka配置
 eureka:
   client:
     service-url:
       defaultZone: http://127.0.0.1:10086/eureka
+    registry-fetch-interval-seconds: 10
       #  Eureka 客户端从 Eureka 服务器获取注册表信息的时间间隔，这里配置为 5 秒
-      registryFetchIntervalSeconds: 1
-#    registry-fetch-interval-seconds: 180
+#      registryFetchIntervalSeconds: 1
+#   registry-fetch-interval-seconds: 180
   #    fetch-registry: false  #是否从Eureka服务器获取注册表信息
  #  修改心跳时间
 mybatis:
@@ -49,6 +57,8 @@ management:
 eureka-server:
           ipAddress: 127.0.0.1
           appName: user-service
+DIY_QUEUE:
+    VALUE: SERVER_LIST
 
 
 

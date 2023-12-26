@@ -1,18 +1,40 @@
 package com.yu7.order.pojo;
 
+import com.netflix.loadbalancer.ILoadBalancer;
 import com.netflix.loadbalancer.Server;
 
-public class RegistryData extends Server {
+import java.util.List;
 
-    public RegistryData(String host, int port) {
-        super(host, port);
+public class RegistryData implements ILoadBalancer {
+
+
+    @Override
+    public void addServers(List<Server> newServers) {
+
     }
 
-    public RegistryData(String scheme, String host, int port) {
-        super(scheme, host, port);
+    @Override
+    public Server chooseServer(Object key) {
+        return null;
     }
 
-    public RegistryData(String id) {
-        super(id);
+    @Override
+    public void markServerDown(Server server) {
+
+    }
+
+    @Override
+    public List<Server> getServerList(boolean availableOnly) {
+        return null;
+    }
+
+    @Override
+    public List<Server> getReachableServers() {
+        return null;
+    }
+
+    @Override
+    public List<Server> getAllServers() {
+        return null;
     }
 }

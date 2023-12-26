@@ -28,7 +28,7 @@ public class ClearRibbonCacheBean {
     public void clearRibbonCache(SpringClientFactory clientFactory, String portParams,String appName) {
         // 获取指定服务的负载均衡器
         ILoadBalancer loadBalancer = clientFactory.getLoadBalancer(appName);
-        //在主动拉取可用列表，而不是走拦截器被动的方式——这里
+        //在主动拉取可用列表，而不是走拦截器被动的方式——这里为什么获取可用的之后还要过滤，就是因为所谓的可用不是实时的可用而是缓存中的可用
         List<Server> reachableServers = loadBalancer.getReachableServers();//这里从客户端获取，会等待客户端同步三级缓存
         //过滤掉已经下线的端口，符合条件端口的服务过滤出来
         List<Integer> portList = StringChange.stringToList(portParams);

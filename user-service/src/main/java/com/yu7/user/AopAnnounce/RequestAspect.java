@@ -28,13 +28,4 @@ public class RequestAspect {
         InstanceInfo instanceInfo = eurekaClient.getApplicationInfoManager().getInfo();
         log.debug("负载均衡到的实例信息为：{}", instanceInfo.getInstanceId());
     }
-
-//    @After(value = "execution(* com.yu7.user.web.*.*(..))")
-//    public void logAfter(JoinPoint joinPoint) {
-//        String methodName = joinPoint.getSignature().getName();
-//        String className = joinPoint.getTarget().getClass().getName();
-//        log.debug("调用方法:{} ", className + "." + methodName);
-//        InstanceInfo instanceInfo = eurekaClient.getApplicationInfoManager().getInfo();
-//        log.debug("负载均衡到的实例信息为：{}", instanceInfo.getInstanceId());
-//    }
 }

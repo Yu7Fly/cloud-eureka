@@ -10,6 +10,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import org.apache.commons.lang3.ObjectUtils;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.netflix.ribbon.SpringClientFactory;
@@ -22,8 +23,8 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 @RestController
@@ -38,8 +39,17 @@ public class controller {
     @Value("${eureka-server.appName}")
     private String appName;
 
+    @Value("${DIY_QUEUE.VALUE}")
+    private String queueName;
+
+    @Resource
+    SpringClientFactory springClientFactory;
+
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
+
+    @Resource
+    private RabbitTemplate rabbitTemplate;
 
 //    @Resource
 //    ClearRibbonCache clearRibbonCache;
@@ -115,9 +125,13 @@ public class controller {
 //        clearRibbonCache.clearRibbonCache(clientFactory,portParams);
 //        log.debug("可用服务列表：{}",clientFactory.getLoadBalancer("user-service").getAllServers());
 //        log.debug("可用服务列表：{}",clientFactory.getLoadBalancer("user-service").getReachableServers());
-        // todo MQ通知
-        stringRedisTemplate.opsForHash().putIfAbsent("port-map",appName,portParams.toString());
-        stringRedisTemplate.expire("port-map", 30, TimeUnit.SECONDS);
+        // todo Redis通知
+//        stringRedisTemplate.opsForHash().putIfAbsent("port-map",appName,portParams.toString());
+//        stringRedisTemplate.expire("port-map", 300, TimeUnit.SECONDS);
+        //todo MQ通知
+        HashMap<String, List<Integer>> portInfo = new HashMap<>();
+        portInfo.put(appName,successList);
+        rabbitTemplate.convertAndSend(queueName,portInfo);
         return successList + "优雅下线成功";
     }
 

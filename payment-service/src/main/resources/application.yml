@@ -51,12 +51,20 @@ spring:
     password: 123456
   application:
     name: payment-service
+# rabbitmq
+  rabbitmq:
+    host: 152.136.56.27
+    port: 5672
+    username: yu7
+    password: 284650
+    virtual-host: /
 eureka:
   client:
     service-url:
       defaultZone: http://127.0.0.1:10086/eureka
+    registry-fetch-interval-seconds: 10
       #  Eureka 客户端从 Eureka 服务器获取注册表信息的时间间隔，这里配置为 5 秒
-      registryFetchIntervalSeconds: 5
+#      registryFetchIntervalSeconds: 5
   #是否使用只读缓存
 #    use-read-only-response-cache: false
 

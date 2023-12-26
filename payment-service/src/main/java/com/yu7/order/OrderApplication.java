@@ -1,6 +1,10 @@
 package com.yu7.order;
 
 
+import com.netflix.loadbalancer.IRule;
+import com.netflix.loadbalancer.RandomRule;
+import com.netflix.loadbalancer.RoundRobinRule;
+import com.netflix.loadbalancer.ZoneAvoidanceRule;
 import com.yu7.feign.clients.UserClient;
 import com.yu7.feign.config.DefaultFeignConfiguration;
 import lombok.extern.slf4j.Slf4j;
@@ -36,12 +40,12 @@ public class OrderApplication {
         return new RestTemplate();
     }
 
-    /**
-     * 负载均衡
-     * @return
-     */
+//    /**
+//     * 负载均衡
+//     * @return
+//     */
 //    @Bean
 //    public IRule randomRule() {
-//        return new RandomRule();
+//        return new ZoneAvoidanceRule();
 //    }
 }

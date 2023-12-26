@@ -34,7 +34,6 @@ public class EurekaServiceListener {
         log.debug(event.getServerId()+"\t"+event.getAppName()+"服务下线");
         String serverInfo = event.getServerId();
         Integer port = StringChange.stringGetNumber(serverInfo);
-
     }
 
     @EventListener
