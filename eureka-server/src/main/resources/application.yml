@@ -1,6 +1,10 @@
 server:
   port: 10086 # 服务端口
 spring:
+  cloud:
+   loadbalancer:
+        ribbon:
+          enabled: false
   application:
     name: eurekaserver # eureka的服务名称
 eureka:
@@ -10,8 +14,8 @@ eureka:
     register-with-eureka: false
     fetch-registry: false
   server:
-    #清理服务间隔为3.2秒
-    eviction-interval-timer-in-ms: 3200
+    #清理失效实例的时间间隔为3.2秒
+    eviction-interval-timer-in-ms: 3000
     response-cache-update-interval-ms: 3000
     response-cache-auto-expiration-in-seconds: 180
     #自我保护，防止注册中心和网络之间出现问题

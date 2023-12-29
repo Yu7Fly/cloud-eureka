@@ -25,7 +25,6 @@ public class Consumer {
     ClearRibbonCacheBean clearRibbonCacheBean;
 
     @RabbitListener(queues = "SERVER_LIST")
-//    @Async
     public void listenWorkQueue1(HashMap<String, List<Integer>> message) {
         log.debug("消费者1接收到消息——" + message + "时间为：" + LocalTime.now());
         for (String key : message.keySet()) {

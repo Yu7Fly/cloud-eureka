@@ -32,7 +32,10 @@ eureka:
     service-url:
       defaultZone: http://127.0.0.1:10086/eureka
     registry-fetch-interval-seconds: 10
-      #  Eureka 客户端从 Eureka 服务器获取注册表信息的时间间隔，这里配置为 5 秒
+  instance:
+    lease-renewal-interval-in-seconds: 1 #Eureka客户端多长时间发送心跳给Eureka服务端，这个代表他自己是否存活，默认时间为30S
+    lease-expiration-duration-in-seconds: 3 #Eureka服务器在接受到实例的最后一次发出的心跳后需要多长时间才能
+  #  Eureka 客户端从 Eureka 服务器获取注册表信息的时间间隔，这里配置为 5 秒
 #      registryFetchIntervalSeconds: 1
 #   registry-fetch-interval-seconds: 180
   #    fetch-registry: false  #是否从Eureka服务器获取注册表信息
