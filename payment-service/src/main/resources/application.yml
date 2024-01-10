@@ -58,12 +58,21 @@ spring:
     username: yu7
     password: 284650
     virtual-host: /
+#Actuator
+management:
+  endpoint:
+    shutdown:
+      enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 eureka:
   client:
     service-url:
       defaultZone: http://127.0.0.1:10086/eureka
-    registry-fetch-interval-seconds: 3
-      #  Eureka 客户端从 Eureka 服务器获取注册表信息的时间间隔，这里配置为 5 秒
+    registry-fetch-interval-seconds: 10
+      #  Eureka 客户端从 Eureka 服务器获取注册表信息的时间间隔，这里配置为 10 秒
     #每次获取全量注册信息
     disable-delta: true
     #服务消费者从注册中心拉取服务列表

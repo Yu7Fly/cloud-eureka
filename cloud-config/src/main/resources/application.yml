@@ -1,0 +1,16 @@
+# 服务端口
+server:
+  port: 8086
+  #指定应用名称
+spring:
+  application:
+    name: config-center
+  cloud:
+    config:
+      label: master #配置git仓库分支
+      server:
+        git:
+          uri: https://gitee.com/lazy-sheep-java/cloud-config.git #配置git仓库地址
+          search-paths: cloud-config/application.yml #配置仓库路径
+          #username:  git_username #访问git仓库的用户名,公开仓库不配置用户名
+          #password: git_password #访问git仓库的用户密码,公开仓库不配置密码
