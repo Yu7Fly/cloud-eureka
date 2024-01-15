@@ -25,7 +25,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 @RestController
@@ -43,6 +42,8 @@ public class controller {
     @Value("${DIY_QUEUE.VALUE}")
     private String queueName;
 
+    @Value("${DIY_EXCHANGE.VALUE}")
+    private String exchangeName;
     @Resource
     SpringClientFactory springClientFactory;
 
@@ -132,7 +133,7 @@ public class controller {
         //todo MQ通知
         HashMap<String, List<Integer>> portInfo = new HashMap<>();
         portInfo.put(appName,successList);
-        rabbitTemplate.convertAndSend(queueName,portInfo);
+        rabbitTemplate.convertAndSend(exchangeName,"USER.SERVICE-DOWN",portInfo);// 这个队列以后可能会发USER话题下的很多信息
         return successList + "优雅下线成功";
     }
 

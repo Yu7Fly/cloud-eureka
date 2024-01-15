@@ -61,7 +61,9 @@ eureka-server:
           ipAddress: 127.0.0.1
           appName: user-service
 DIY_QUEUE:
-    VALUE: SERVER_LIST
+    VALUE: USER-QUEUE
+DIY_EXCHANGE:
+    VALUE: USER-TOPIC
 
 
 

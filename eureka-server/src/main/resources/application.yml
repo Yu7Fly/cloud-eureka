@@ -20,7 +20,8 @@ eureka:
     response-cache-auto-expiration-in-seconds: 180
     #自我保护，防止注册中心和网络之间出现问题
     enable-self-preservation: false
-    useReadOnlyResponseCache: true
+    #开启三级缓存
+    useReadOnlyResponseCache: false
 #Actuator
 management:
   endpoint:

@@ -7,11 +7,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * 生产者，生产消息到交换机，交换机路由到指定队列，消费者监听队列消费消息
+ */
 @RestController
 @RequestMapping("mq")
 public class Producer {
@@ -25,13 +27,6 @@ public class Producer {
     private String queueName;
     @GetMapping("/sendMsg")
     public void customInfo() {
-//        String queueName = "work.queue";
-//        String message = "hello, MQ,i am yu7";
-////        for (int i = 1; i <= 50; i++) {
-////            rabbitTemplate.convertAndSend(queueName, message + i);
-////            Thread.sleep(20);
-////        }
-//        rabbitTemplate.convertAndSend(queueName, message);
         HashMap<String, List<Integer>> portInfo = new HashMap<>();
         portInfo.put(appName, Arrays.asList(8083,8084));
         rabbitTemplate.convertAndSend(queueName,portInfo);
