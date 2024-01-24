@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RestController;
  * @Time : 2024/1/9 19:37
  * @Summarize :
  */
-@RestController
-@RefreshScope
-public class TryConfigController {
-    @Value("${eureka.client.registry-fetch-interval-seconds}")
-    private String seconds;
-
-    @GetMapping("info")
-    public String info(){
-        return seconds;
-    }
-}
+//@RestController
+//@RefreshScope
+//public class TryConfigController {
+//    @Value("${eureka.client.registry-fetch-interval-seconds}")
+//    private String seconds;
+//
+//    @GetMapping("info")
+//    public String info(){
+//        return seconds;
+//    }
+//}

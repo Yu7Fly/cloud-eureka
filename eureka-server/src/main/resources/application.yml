@@ -1,6 +1,13 @@
 server:
   port: 10086 # 服务端口
 spring:
+  # rabbitmq
+  rabbitmq:
+    host: 152.136.56.27
+    port: 5672
+    username: yu7
+    password: 284650
+    virtual-host: /
   cloud:
    loadbalancer:
         ribbon:
