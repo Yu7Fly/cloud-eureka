@@ -3,13 +3,13 @@ server:
 spring:
   # mysql
   datasource:
-    url: jdbc:mysql://152.136.56.27:3306/cloud_order?useSSL=false
+    url: jdbc:mysql://******:3306/cloud_order?useSSL=false
     username: root
     password: ysbb284650
     driver-class-name: com.mysql.jdbc.Driver
   # Redis
   redis:
-    host: 152.136.56.27
+    host: ******
     port: 6379
     timeout: 5000 # 连接超时时间（单位：毫秒）
     jedis:
@@ -20,7 +20,7 @@ spring:
     name: payment-service
 # rabbitmq
   rabbitmq:
-    host: 152.136.56.27
+    host: ******
     port: 5672
     username: yu7
     password: 284650
