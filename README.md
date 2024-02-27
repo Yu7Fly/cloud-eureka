@@ -21,11 +21,15 @@
 ### 7.SpringCloudConfig+SpringCloudBus+Actuator+Git实现Eureka关键配置属性热更新(全程不重启服务)：
 **http://t.csdnimg.cn/jOfPY --(优化)**
 
-## 各种通俗易懂的源码流程图、调用流程图：
+## 各种通俗易懂的源码流程图、调用流程图
 
 ![img.png](static/img.png)
 
 ## 全方位的压测数据为结果做支撑(每一个方案和改动都会有JMeter对其进行压测,在文章中都有具体体现)
 
 ![img_1.png](static/img_1.png)
+
+## 系列专栏文档附有关键代码片段，图文并茂，引人入胜
+
+![img.png](img.png)
 
