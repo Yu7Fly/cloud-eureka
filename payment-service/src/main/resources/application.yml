@@ -57,4 +57,5 @@ mybatis:
 eureka-server:
             url: http://127.0.0.1:10086/eureka/apps/
             appName: user-service
+# 测试github
 
